@@ -11,6 +11,7 @@ int main(void)
 	char *line = NULL;
 	size_t len_line = 0;
 	ssize_t num_chars_line = 0;
+	errno = 0;
 
 	while (1)
 	{
@@ -22,7 +23,10 @@ int main(void)
 			{
 				perror("This command is not correct");
 			}
-			write(STDOUT_FILENO, "\n", 1);
+			else if (num_chars_line == EOF)
+			{
+				write(STDOUT_FILENO, "\n", 1);
+			}
 			free(line);
 			exit(1);
 		}
