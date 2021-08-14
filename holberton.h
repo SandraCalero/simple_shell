@@ -8,6 +8,7 @@
 #include <fcntl.h>
 #include <stddef.h>
 #include <unistd.h>
+#include <errno.h>
 
 int _strlen(char *s);
 
