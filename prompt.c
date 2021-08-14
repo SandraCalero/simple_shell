@@ -22,6 +22,8 @@ int main(void)
 			{
 				perror("This command is not correct");
 			}
+			write(STDOUT_FILENO, "\n", 1);
+			free(line);
 			exit(1);
 		}
 		write(STDOUT_FILENO, line, num_chars_line);
