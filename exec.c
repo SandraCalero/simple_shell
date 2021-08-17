@@ -7,12 +7,14 @@
 int main(void)
 {
 	char *argv[] = {"/bin/ls", "-l", "/tmp/", NULL};
+	int child_pid;
 	int exreturn;
 	int i;
 
 	for (i = 0 ; i < 5 ; i++)
 	{
-		if(fork() == 0)
+		child_pid = fork();
+		if(child_pid == 0)
 		{
 			printf("[son] pid %d from [parent] pid %d\n",getpid(),getppid());
 			exreturn = execve(argv[0], argv, NULL);
@@ -20,12 +22,9 @@ int main(void)
 			{
 				perror("Error: in execve");
 			}
-			exit(0);
+			_exit(0);
 		}
-	}
-	for (i = 0 ; i < 5 ; i++)
-	{
 		wait (NULL);
-		}
+	}
 	return (0);
 }
