@@ -1,8 +1,9 @@
 #include "holberton.h"
 /**
- * main - execve example
+ * execute_proccess - creates a child procces and executes a command in this.
+ * @argv: The ponter that point to a pointer thar points to an array of strings
  *
- * Return: Always 0.
+ * Return: Nothing.
  */
 void execute_proccess(char **argv)
 {
@@ -20,10 +21,10 @@ void execute_proccess(char **argv)
 		exreturn = execve(argv[0], argv, NULL);
 		if (exreturn == -1)
 		{
-			perror("Error: in execve");
+			perror("hsh: 1: command not found");
 		}
 		_exit(0);
 	}
 	else
-		wait (NULL);
+		wait(NULL);
 }

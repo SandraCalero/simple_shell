@@ -15,5 +15,6 @@
 int _strlen(char *s);
 char **split_string(char *text);
 void execute_proccess(char **argv);
+void free_double_pointer(char **douPtr);
 
 #endif /* HOLBERTON_H */
