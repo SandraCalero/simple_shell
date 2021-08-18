@@ -11,8 +11,7 @@ char **split_string(char *text)
 	const char *delimit = " :";
 	unsigned int len_array = 0;
 	char *token;
-	unsigned int capacity = 16;
-	char **array_tokens = malloc(sizeof(text) * capacity);
+	char **array_tokens = malloc(1024);
 
 	if (array_tokens == NULL)
 	{
@@ -25,10 +24,9 @@ char **split_string(char *text)
 	{
 		array_tokens[len_array] = token;
 		len_array++;
-		if (len_array >= capacity)
+		if (len_array >= 1024)
 		{
-			capacity = capacity * 1.5;
-			array_tokens = realloc(array_tokens, capacity * sizeof(char *));
+			array_tokens = realloc(array_tokens, 1024);
 			if (array_tokens == NULL)
 			{
 				free(array_tokens);

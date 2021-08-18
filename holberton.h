@@ -13,5 +13,7 @@
 #include <string.h>
 
 int _strlen(char *s);
+char **split_string(char *text);
+void execute_proccess(char **argv);
 
 #endif /* HOLBERTON_H */
