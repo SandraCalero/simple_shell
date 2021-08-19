@@ -35,10 +35,10 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 		for (position_line = 0 ; line[position_line] != '\n'; position_line++)
 			;
 		line[position_line] = '\0';
-		array_tokens = split_string(line);
-		built_in = get_built_in(array_tokens[0], env);
+		built_in = get_built_in(line, env);
 		if (built_in == 0)
 			continue;
+		array_tokens = split_string(line);
 		execute_proccess(array_tokens);
 	}
 	return (0);
