@@ -24,8 +24,10 @@ void (*get_built_in(char *array_tokens))()
 	while (i < len)
 	{
 		len_built_in_name = _strlen(array_built_in[i].built_in_name);
+		
 		compare = _strncmp(array_tokens, array_built_in[i].built_in_name
 				   , len_built_in_name);
+		
 		if (compare == 0)
 			return (array_built_in[i].built_in_function);
 		i++;

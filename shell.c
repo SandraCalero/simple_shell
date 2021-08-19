@@ -4,7 +4,7 @@
  *
  * Return: 0 success.
  */
-int main(void)
+int main(int ac __attribute__((unused)), char **av __attribute__((unused)), char **env)
 {
 	char *prompt = "$ ";
 	size_t len_prompt = _strlen(prompt);
@@ -13,7 +13,7 @@ int main(void)
 	ssize_t num_chars_line = 0;
 	int position_line;
 	char **array_tokens = NULL;
-	void (*built_in)(char *);
+	void (*built_in)();
 
 	errno = 0;
 	while (1)
@@ -43,7 +43,9 @@ int main(void)
 			execute_proccess(array_tokens);
 		}
 		else
-			built_in(array_tokens[0]);
+		{
+			built_in(env);
+		}
 	}
 	return (0);
 }

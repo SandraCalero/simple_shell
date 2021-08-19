@@ -64,7 +64,7 @@ int _strlen(char *s)
  */
 int _strncmp(char *s1, char *s2, size_t len)
 {
-	int i = 0;
+	size_t i = 0;
 	int rest = s1[i] - s2[i];
 
 	if (s1 == NULL || s2 == NULL)
