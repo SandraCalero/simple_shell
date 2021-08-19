@@ -12,12 +12,12 @@ int get_built_in(char *s, char **env)
 	char built_in_env[] = "env";
 	char built_in_exit[] = "exit";
 
-	if (_strncmp(s, built_in_exit, _strlen(built_in_exit)) == 0)
+	if (_strcmp(s, built_in_exit) == 0)
 	{
 		/*exit(0);*/
 		return (0);
 	}
-	else if (_strncmp(s, built_in_env, _strlen(built_in_env)) == 0)
+	else if (_strcmp(s, built_in_env) == 0)
 	{
 		_env(env);
 		return (0);
