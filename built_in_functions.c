@@ -14,8 +14,7 @@ int get_built_in(char *s, char **env)
 
 	if (_strcmp(s, built_in_exit) == 0)
 	{
-		/*exit(0);*/
-		return (0);
+		exit(0);
 	}
 	else if (_strcmp(s, built_in_env) == 0)
 	{
