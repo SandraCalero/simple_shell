@@ -26,9 +26,8 @@ char *search_path(char *first_arg, char **tokenized_path)
 		stat_return = stat(aux, &st);
 		if (stat_return == 0)
 		{
-			first_arg = aux;
 			errno = 0;
-			return (first_arg);
+			return (aux);
 		}
 	}
 	errno = 0;
