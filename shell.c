@@ -78,12 +78,12 @@ char *search_path(char *first_arg, char **tokenized_path)
 char *get_path(char **env)
 {
 	char *path_value;
-	int i, equal;
+	int i, compare;
 
 	for (i = 0; env[i]; i++)
 	{
-		equal = _strncmp(env[i], "PATH", _strlen("PATH"));
-		if (equal == 0)
+		compare = _strncmp(env[i], "PATH", _strlen("PATH"));
+		if (compare == 0)
 		{
 			path_value = env[i];
 			for (i = 0; path_value[i] != '/'; path_value++)
