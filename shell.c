@@ -10,13 +10,15 @@
 int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 	 char **env)
 {
-	char *prompt = "$ ", *line = NULL;
+	char **array_tokens = NULL, **tokenized_path;
+	char *prompt = "$ ", *line = NULL, *path;
 	size_t len_prompt = _strlen(prompt), len_line = 0;
 	ssize_t num_chars_line = 0;
 	int position_line, built_in;
-	char **array_tokens = NULL;
 
 	errno = 0;
+	path = get_path(env);
+	tokenized_path = split_string(path);
 	while (1)
 	{
 		write(STDOUT_FILENO, prompt, len_prompt);
@@ -39,7 +41,55 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 		if (built_in == 0)
 			continue;
 		array_tokens = split_string(line);
+		if (array_tokens[0][0] != '/')
+			array_tokens[0] = search_path(array_tokens[0], tokenized_path);
 		execute_proccess(array_tokens);
 	}
 	return (0);
+}
+
+
+char *search_path(char *first_arg, char **tokenized_path)
+{
+	char *aux = malloc(50);
+	int i, j, stat_return = 0;
+	struct stat st;
+
+	for (i = 0; tokenized_path[i]; i++)
+	{
+		_strcpy(aux, tokenized_path[i]);
+		for (j = 0; aux[j]; j++)
+			;
+		aux[j] = '/';
+		aux[j + 1] = '\0';
+		aux = _strcat(aux, first_arg);
+		stat_return = stat(aux, &st);
+		if (stat_return == 0)
+		{
+			first_arg = aux;
+			errno = 0;
+			return (first_arg);
+		}
+	}
+	errno = 0;
+	return (first_arg);
+}
+
+char *get_path(char **env)
+{
+	char *path_value;
+	int i, equal;
+
+	for (i = 0; env[i]; i++)
+	{
+		equal = _strncmp(env[i], "PATH", _strlen("PATH"));
+		if (equal == 0)
+		{
+			path_value = env[i];
+			for (i = 0; path_value[i] != '/'; path_value++)
+				;
+			return (path_value);
+		}
+	}
+	return (NULL);
 }
