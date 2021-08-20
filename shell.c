@@ -38,12 +38,15 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 			;
 		line[position_line] = '\0';
 		built_in = get_built_in(line, env);
-		if (built_in == 0)
+		if (built_in == 0 || *line == 0)
 			continue;
 		array_tokens = split_string(line);
 		if (array_tokens[0][0] != '/')
 			array_tokens[0] = search_path(array_tokens[0], tokenized_path);
 		execute_proccess(array_tokens);
+		free(line);
+		line = NULL;
+		free(array_tokens);
 	}
 	return (0);
 }
