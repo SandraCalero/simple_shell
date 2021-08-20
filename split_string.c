@@ -8,7 +8,7 @@
  */
 char **split_string(char *text)
 {
-	const char *delimit = " :";
+	const char *delimit = " :\t";
 	unsigned int len_array = 0;
 	char *token;
 	char **array_tokens = malloc(1024);
