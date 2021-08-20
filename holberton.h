@@ -15,6 +15,8 @@
 char **split_string(char *text);
 void execute_proccess(char **argv);
 void free_double_pointer(char **douPtr);
+char *search_path(char *first_arg, char **env);
+char *get_path(char **env);
 
 /*These functions are in the file built_in_functions*/
 int get_built_in(char *s, char **env);
