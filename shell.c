@@ -21,24 +21,26 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 	tokenized_path = split_string(path);
 	while (1)
 	{
-		write(STDOUT_FILENO, prompt, len_prompt);
+		if (isatty(STDIN_FILENO) == 1)
+			write(STDOUT_FILENO, prompt, len_prompt);
 		num_chars_line = getline(&line, &len_line, stdin);
+		if (num_chars_line == EOF)
+		{
+			if (isatty(STDIN_FILENO) == 1)
+				write(STDOUT_FILENO, "\n", 1);
+			free(line);
+			exit(0); }
 		if (num_chars_line < 0)
 		{
 			if (errno)
 				perror("This command is not correct");
-			else if (num_chars_line == EOF)
-			{
-				write(STDOUT_FILENO, "\n", 1);
-			}
 			free(line);
-			exit(1);
-		}
+			exit(1); }
 		for (position_line = 0 ; line[position_line] != '\n'; position_line++)
 			;
 		line[position_line] = '\0';
 		built_in = get_built_in(line, env);
-		if (built_in == 0 || *line == 0)
+		if (built_in == 0 || *line == '\0')
 			continue;
 		array_tokens = split_string(line);
 		if (array_tokens[0][0] != '/')
@@ -48,5 +50,4 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 		line = NULL;
 		free(array_tokens);
 	}
-	return (0);
-}
+	return (0); }
