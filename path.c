@@ -3,10 +3,11 @@
 /**
   * search_path - use stat function to search the command
   * entered in the prompt
-  * @first_arg: command entered
-  * @tokenized_path: array of tokens with each directory
+  * @array_tokens: Command line entered by standard input
+  * @tokenized_path: Array of tokens with each directory
   * of the path
-  * Return: pointer with the path of the enterede command
+  *
+  * Return: Nothing.
   */
 
 void search_path(char **array_tokens, char **tokenized_path)
@@ -26,15 +27,15 @@ void search_path(char **array_tokens, char **tokenized_path)
 		stat_return = stat(aux, &st);
 		if (stat_return == 0)
 		{
-			array_tokens[0] = aux;/**/
-			execute_proccess(array_tokens);/**/
-			free(aux);/**/
+			array_tokens[0] = aux;
+			execute_proccess(array_tokens);
+			free(aux);
 			errno = 0;
-			return; /**/
+			return;
 		}
 	}
 	perror("hsh: 1: command not found");
-	free(aux);/**/
+	free(aux);
 	errno = 0;
 }
 

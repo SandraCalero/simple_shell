@@ -33,8 +33,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 				free(line);
 				exit(0); }
 			if (errno)
-				perror("This command is not correct");
-			free(line);
+				free(line);
 			exit(1); }
 		for (position_line = 0 ; line[position_line] != '\n'; position_line++)
 			;
@@ -49,6 +48,5 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 			execute_proccess(array_tokens);
 		free(array_tokens);
 		free(line);
-		line = NULL;
-	}
+		line = NULL; }
 	return (0); }
