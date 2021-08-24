@@ -9,9 +9,9 @@
 char **split_string(char *text)
 {
 	const char *delimit = " :\t";
-	unsigned int len_array = 0;
+	unsigned int len_array = 0, arr_size = 1024, new_size = arr_size;
 	char *token;
-	char **array_tokens = malloc(1024);
+	char **array_tokens = malloc(arr_size);
 
 	if (array_tokens == NULL)
 	{
@@ -24,9 +24,10 @@ char **split_string(char *text)
 	{
 		array_tokens[len_array] = token;
 		len_array++;
-		if (len_array >= 1024)
+		if (len_array >= arr_size)
 		{
-			array_tokens = realloc(array_tokens, 1024);
+		new_size += arr_size;
+		array_tokens = _realloc(array_tokens, arr_size, new_size);
 			if (array_tokens == NULL)
 			{
 				free(array_tokens);
