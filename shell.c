@@ -30,11 +30,14 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 			{
 				if (isatty(STDIN_FILENO) == 1)
 					write(STDOUT_FILENO, "\n", 1);
+				free(tokenized_path);
 				free(line);
 				exit(0); }
 			if (errno)
+			{
+				free(tokenized_path);
 				free(line);
-			exit(1); }
+			exit(1); }}
 		for (position_line = 0 ; line[position_line] != '\n'; position_line++)
 			;
 		line[position_line] = '\0';
@@ -42,6 +45,8 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 		if (built_in == 0 || *line == '\0')
 			continue;
 		array_tokens = split_string(line);
+		if (array_tokens == NULL) /**/
+			continue; /**/
 		if (array_tokens[0][0] != '/')
 			search_path(array_tokens, tokenized_path);
 		else
