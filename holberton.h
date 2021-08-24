@@ -12,9 +12,9 @@
 #include <errno.h>
 #include <string.h>
 
+/*These functions are in individual files*/
 char **split_string(char *text);
 void execute_proccess(char **argv);
-void free_double_pointer(char **douPtr);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 /*These functions are in the file path*/

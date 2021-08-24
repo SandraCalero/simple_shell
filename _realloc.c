@@ -1,23 +1,22 @@
 #include "holberton.h"
-
 /**
  * *_realloc - reallocates a memory block using malloc and free
- * @ptr: pointer to the memory previusly allocated
- * @old_size: the size of ptr
- * @new_size: the size of the required pointer
- * Return: pointer with memory allocated
+ * @ptr: Pointer to the memory previusly allocated
+ * @old_size: The size of ptr
+ * @new_size: The size of the required pointer
  *
+ * Return: Pointer with new memory allocated
  */
 
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	char *pointer, *bu = ptr;
+	char *new_space, *copy_ptr = ptr;
 	unsigned int i;
 
-	if (!ptr)
+	if (ptr == NULL)
 	{
-		pointer = malloc(new_size);
-		return (pointer);
+		new_space = malloc(new_size);
+		return (new_space);
 	}
 	if (new_size == 0)
 	{
@@ -26,13 +25,11 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	}
 	if (new_size == old_size)
 		return (ptr);
-	pointer = malloc(new_size);
-	if (!pointer)
+	new_space = malloc(new_size);
+	if (new_space == NULL)
 		return (NULL);
-
 	for (i = 0; i < old_size; i++)
-		pointer[i] = bu[i];
+		new_space[i] = copy_ptr[i];
 	free(ptr);
-
-	return (pointer);
+	return (new_space);
 }
