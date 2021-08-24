@@ -24,14 +24,14 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, prompt, len_prompt);
 		num_chars_line = getline(&line, &len_line, stdin);
-		if (num_chars_line == EOF)
-		{
-			if (isatty(STDIN_FILENO) == 1)
-				write(STDOUT_FILENO, "\n", 1);
-			free(line);
-			exit(0); }
 		if (num_chars_line < 0)
 		{
+			if (num_chars_line == EOF)
+			{
+				if (isatty(STDIN_FILENO) == 1)
+					write(STDOUT_FILENO, "\n", 1);
+				free(line);
+				exit(0); }
 			if (errno)
 				perror("This command is not correct");
 			free(line);
@@ -39,15 +39,16 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 		for (position_line = 0 ; line[position_line] != '\n'; position_line++)
 			;
 		line[position_line] = '\0';
-		built_in = get_built_in(line, env);
+		built_in = get_built_in(line, env, tokenized_path);
 		if (built_in == 0 || *line == '\0')
 			continue;
 		array_tokens = split_string(line);
 		if (array_tokens[0][0] != '/')
-			array_tokens[0] = search_path(array_tokens[0], tokenized_path);
-		execute_proccess(array_tokens);
+			search_path(array_tokens, tokenized_path);
+		else
+			execute_proccess(array_tokens);
+		free(array_tokens);
 		free(line);
 		line = NULL;
-		free(array_tokens);
 	}
 	return (0); }

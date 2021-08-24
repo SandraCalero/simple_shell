@@ -9,7 +9,7 @@
   * Return: pointer with the path of the enterede command
   */
 
-char *search_path(char *first_arg, char **tokenized_path)
+void search_path(char **array_tokens, char **tokenized_path)
 {
 	char *aux = malloc(50);
 	int i, j, stat_return = 0;
@@ -22,16 +22,20 @@ char *search_path(char *first_arg, char **tokenized_path)
 			;
 		aux[j] = '/';
 		aux[j + 1] = '\0';
-		aux = _strcat(aux, first_arg);
+		aux = _strcat(aux, array_tokens[0]);
 		stat_return = stat(aux, &st);
 		if (stat_return == 0)
 		{
+			array_tokens[0] = aux;/**/
+			execute_proccess(array_tokens);/**/
+			free(aux);/**/
 			errno = 0;
-			return (aux);
+			return; /**/
 		}
 	}
+	perror("hsh: 1: command not found");
+	free(aux);/**/
 	errno = 0;
-	return (first_arg);
 }
 
 /**

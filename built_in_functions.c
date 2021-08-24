@@ -7,13 +7,15 @@
  *
  * Return: 0 if the built-in is founded, -1 if not.
  */
-int get_built_in(char *s, char **env)
+int get_built_in(char *s, char **env, char **tokenized_path)
 {
 	char built_in_env[] = "env";
 	char built_in_exit[] = "exit";
 
 	if (_strcmp(s, built_in_exit) == 0)
 	{
+		free(s);
+		free(tokenized_path);
 		exit(0);
 	}
 	else if (_strcmp(s, built_in_env) == 0)

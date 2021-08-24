@@ -17,11 +17,11 @@ void execute_proccess(char **argv);
 void free_double_pointer(char **douPtr);
 
 /*These functions are in the file path*/
-char *search_path(char *first_arg, char **env);
+void search_path(char **array_tokens, char **tokenized_path);
 char *get_path(char **env);
 
 /*These functions are in the file built_in_functions*/
-int get_built_in(char *s, char **env);
+int get_built_in(char *s, char **env, char **tokenized_path);
 void _env(char **env);
 
 /*These functions are in the file str_functions*/
