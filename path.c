@@ -12,7 +12,7 @@
 
 void search_path(char **array_tokens, char **tokenized_path)
 {
-	char *aux = malloc(50);
+	char *aux = malloc(1024);
 	int i, j, stat_return = 0;
 	struct stat st;
 

@@ -13,6 +13,7 @@
 #include <string.h>
 
 /*These functions are in individual files*/
+char *prompt_get_line(char **tokenized_path, char *line);
 char **split_string(char *text);
 void execute_proccess(char **argv);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);

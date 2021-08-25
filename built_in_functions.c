@@ -23,6 +23,8 @@ int get_built_in(char *line, char **env, char **tokenized_path)
 	else if (_strcmp(line, built_in_env) == 0)
 	{
 		_env(env);
+		free(line);
+		line = NULL;
 		return (0);
 	}
 	else

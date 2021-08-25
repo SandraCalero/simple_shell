@@ -16,22 +16,25 @@ char **split_string(char *text)
 	if (array_tokens == NULL)
 	{
 		free(array_tokens);
-		perror("Error message for array_tokens");
 		exit(1);
 	}
 	token = strtok(text, delimit);
+	if (token == NULL)
+	{
+		free(array_tokens);
+		return (NULL);
+	}
 	while (token != NULL)
 	{
 		array_tokens[len_array] = token;
 		len_array++;
 		if (len_array >= arr_size)
 		{
-		new_size += arr_size;
-		array_tokens = _realloc(array_tokens, arr_size, new_size);
+			new_size = new_size + arr_size;
+			array_tokens = _realloc(array_tokens, arr_size, new_size);
 			if (array_tokens == NULL)
 			{
 				free(array_tokens);
-				perror("Error message for realloc array");
 				exit(1);
 			}
 		}
