@@ -17,7 +17,7 @@ int get_built_in(char *line, char **tokenized_path)
 	{
 		free(line);
 		free(tokenized_path);
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 	else if (_strcmp(line, built_in_env) == 0)
 	{
