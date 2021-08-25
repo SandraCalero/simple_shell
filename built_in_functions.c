@@ -3,13 +3,12 @@
  * get_built_in - selects the corresponding to the according to the selected
  * built-in.
  * @line: Pointer to a string to be compared with built-ins.
- * @env: extern environ variable.
  * @tokenized_path: Array of tokens with each directory
  * of the path.
  *
  * Return: 0 if the built-in is founded, -1 if not.
  */
-int get_built_in(char *line, char **env, char **tokenized_path)
+int get_built_in(char *line, char **tokenized_path)
 {
 	char built_in_env[] = "env";
 	char built_in_exit[] = "exit";
@@ -22,7 +21,7 @@ int get_built_in(char *line, char **env, char **tokenized_path)
 	}
 	else if (_strcmp(line, built_in_env) == 0)
 	{
-		_env(env);
+		_env();
 		free(line);
 		line = NULL;
 		return (0);
@@ -32,14 +31,12 @@ int get_built_in(char *line, char **env, char **tokenized_path)
 }
 /**
  * _env - prints the environment
- * @env: environ variable.
  *
  * Return: Nothing.
  */
-void _env(char **env)
+void _env(void)
 {
 	unsigned int i;
-	(void)env;
 
 	i = 0;
 	while (environ[i] != NULL)

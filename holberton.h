@@ -1,6 +1,8 @@
 #ifndef HOLBERTON_H
 #define HOLBERTON_H
 
+extern char **environ;
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/types.h>
@@ -23,8 +25,8 @@ void search_path(char **array_tokens, char **tokenized_path);
 char *get_path(char **env);
 
 /*These functions are in the file built_in_functions*/
-int get_built_in(char *s, char **env, char **tokenized_path);
-void _env(char **env);
+int get_built_in(char *s, char **tokenized_path);
+void _env(void);
 
 /*These functions are in the file str_functions*/
 int _strlen(char *s);

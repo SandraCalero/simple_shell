@@ -23,7 +23,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 		for (position_line = 0 ; line[position_line] != '\n'; position_line++)
 			;
 		line[position_line] = '\0';
-		built_in = get_built_in(line, env, tokenized_path);
+		built_in = get_built_in(line, tokenized_path);
 		if (built_in == 0)
 			continue;
 		array_tokens = split_string(line);
