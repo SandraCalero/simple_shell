@@ -39,11 +39,12 @@ int get_built_in(char *line, char **env, char **tokenized_path)
 void _env(char **env)
 {
 	unsigned int i;
+	(void)env;
 
 	i = 0;
-	while (env[i] != NULL)
+	while (environ[i] != NULL)
 	{
-		write(STDOUT_FILENO, env[i], _strlen(env[i]));
+		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
 		i++;
 		write(STDOUT_FILENO, "\n", 1);
 	}
