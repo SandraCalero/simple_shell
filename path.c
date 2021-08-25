@@ -1,5 +1,4 @@
 #include "holberton.h"
-
 /**
   * search_path - use stat function to search the command
   * entered in the prompt
@@ -9,14 +8,13 @@
   *
   * Return: Nothing.
   */
-
 void search_path(char **array_tokens, char **tokenized_path)
 {
 	char *aux = malloc(1024);
 	int i, j, stat_return = 0;
 	struct stat st;
 
-	for (i = 0; tokenized_path[i]; i++)
+	for (i = 0; tokenized_path[i] != NULL; i++)
 	{
 		_strcpy(aux, tokenized_path[i]);
 		for (j = 0; aux[j]; j++)
@@ -34,17 +32,22 @@ void search_path(char **array_tokens, char **tokenized_path)
 			return;
 		}
 	}
-	perror("hsh: 1: command not found");
+	stat_return = stat(array_tokens[0], &st);
+	if (stat_return == 0)
+	{
+		execute_proccess(array_tokens);
+		free(aux);
+		errno = 0;
+		return;
+	}
 	free(aux);
 	errno = 0;
 }
-
 /**
   * get_path - gets the path from the env pointer
   * @env: pointer to enviromental variables
   * Return: pointer to the value of PATH
   */
-
 char *get_path(char **env)
 {
 	char *path_value;

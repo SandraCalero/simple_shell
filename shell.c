@@ -33,10 +33,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 			line = NULL;
 			continue;
 		}
-		if (array_tokens[0][0] != '/')
-			search_path(array_tokens, tokenized_path);
-		else
-			execute_proccess(array_tokens);
+		search_path(array_tokens, tokenized_path);
 		free(array_tokens);
 		free(line);
 		line = NULL; }
