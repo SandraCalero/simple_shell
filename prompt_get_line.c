@@ -23,13 +23,13 @@ char *prompt_get_line(char **tokenized_path, char *line)
 				write(STDOUT_FILENO, "\n", 1);
 			free(tokenized_path);
 			free(line);
-			exit(0);
+			exit(EXIT_SUCCESS);
 		}
 		if (errno)
 		{
 			free(tokenized_path);
 			free(line);
-			exit(1);
+			exit(EXIT_FAILURE);
 		}
 	}
 	return (line);

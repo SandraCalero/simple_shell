@@ -16,7 +16,7 @@ char **split_string(char *text)
 	if (array_tokens == NULL)
 	{
 		free(array_tokens);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	token = strtok(text, delimit);
 	if (token == NULL)
@@ -35,7 +35,7 @@ char **split_string(char *text)
 			if (array_tokens == NULL)
 			{
 				free(array_tokens);
-				exit(1);
+				exit(EXIT_FAILURE);
 			}
 		}
 		token = strtok(NULL, delimit);

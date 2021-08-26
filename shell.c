@@ -7,12 +7,11 @@
  *
  * Return: 0 success.
  */
-int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
-	 char **env)
+int main(int ac __attribute__((unused)), char **av, char **env)
 {
 	char **array_tokens = NULL, **tokenized_path;
 	char *line = NULL, *path;
-	int position_line, built_in;
+	int position_line, built_in, search_return = 0, err_count = 1;
 
 	errno = 0;
 	path = get_path(env);
@@ -33,7 +32,12 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)),
 			line = NULL;
 			continue;
 		}
-		search_path(array_tokens, tokenized_path);
+		search_return = search_path(array_tokens, tokenized_path);
+		if (search_return == 1)
+		{
+			print_error(av[0], array_tokens[0], err_count);
+			err_count++;
+		}
 		free(array_tokens);
 		free(line);
 		line = NULL; }

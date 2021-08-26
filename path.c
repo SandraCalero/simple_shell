@@ -8,7 +8,7 @@
   *
   * Return: Nothing.
   */
-void search_path(char **array_tokens, char **tokenized_path)
+int search_path(char **array_tokens, char **tokenized_path)
 {
 	char *aux = malloc(1024);
 	int i, j, stat_return = 0;
@@ -29,7 +29,7 @@ void search_path(char **array_tokens, char **tokenized_path)
 			execute_proccess(array_tokens);
 			free(aux);
 			errno = 0;
-			return;
+			return (0);
 		}
 	}
 	stat_return = stat(array_tokens[0], &st);
@@ -38,10 +38,11 @@ void search_path(char **array_tokens, char **tokenized_path)
 		execute_proccess(array_tokens);
 		free(aux);
 		errno = 0;
-		return;
-	}
+		return (0);
+	}	
 	free(aux);
 	errno = 0;
+	return (1);
 }
 /**
   * get_path - gets the path from the env pointer
@@ -65,4 +66,16 @@ char *get_path(char **env)
 		}
 	}
 	return (NULL);
+}
+
+void print_error(char *first_av, char *first_token, int err_count)
+{
+	write(STDOUT_FILENO, first_av, _strlen(first_av));
+	write(STDOUT_FILENO, ": ", 2);
+	print_number(err_count);
+	write(STDOUT_FILENO, ": ", 2);
+	write(STDOUT_FILENO, first_token, _strlen(first_token));
+	write(STDOUT_FILENO, ": ", 2);
+	write(STDOUT_FILENO, "not found", 9);
+	write(STDOUT_FILENO, "\n", 1);
 }

@@ -19,10 +19,13 @@ char *prompt_get_line(char **tokenized_path, char *line);
 char **split_string(char *text);
 void execute_proccess(char **argv);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+int _putchar(char c);
+void print_number(int n);
 
 /*These functions are in the file path*/
-void search_path(char **array_tokens, char **tokenized_path);
+int search_path(char **array_tokens, char **tokenized_path);
 char *get_path(char **env);
+void print_error(char *first_av, char *first_token, int err_count);
 
 /*These functions are in the file built_in_functions*/
 int get_built_in(char *s, char **tokenized_path);

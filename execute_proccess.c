@@ -13,8 +13,7 @@ void execute_proccess(char **argv)
 	child_pid = fork();
 	if (child_pid == -1)
 	{
-		perror("Error:");
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	if (child_pid == 0)
 	{
@@ -23,7 +22,7 @@ void execute_proccess(char **argv)
 		{
 			perror("hsh: 1: command not found");
 		}
-		_exit(0);
+		_exit(EXIT_SUCCESS);
 	}
 	else
 		wait(NULL);
