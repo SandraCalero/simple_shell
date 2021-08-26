@@ -20,7 +20,9 @@ void execute_proccess(char **argv)
 		exreturn = execve(argv[0], argv, NULL);
 		if (exreturn == -1)
 		{
-			perror("hsh: 1: ");
+			write(STDOUT_FILENO, "./hsh: 1: ", 10);
+			write(STDOUT_FILENO, argv[0], _strlen(argv[0]));
+			perror(" ");
 		}
 		_exit(EXIT_SUCCESS);
 	}
