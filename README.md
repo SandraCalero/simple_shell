@@ -45,19 +45,48 @@ No installation process is required, although the user needs to download the fun
 * man_1_simple_shell - Contanins the information about this simple shell usage.
 
 ## Compilation
-
+Once the files are downloaded, the compilation process must be done as following:
 ```bash
 $ gcc -g -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 $ ./hsh
 ```
 ## Usage
-### Examples
+Once we have executed the compilation command given above, we obtain an executable file called hsh, which we can use in interactive mode and non-interactive mode as we will show below:
 
+### Examples
 **Interactive mode**
+
+
+https://user-images.githubusercontent.com/85318393/130913665-dd08ff7f-16d6-4ec2-9e70-6a6ea3b4bb32.mp4
+
+
+
+https://user-images.githubusercontent.com/85318393/130913682-a69ea0bd-b6a0-41e1-8a0b-01a88eb0f3f2.mp4
+
+
+
+https://user-images.githubusercontent.com/85318393/130913693-53f73e21-198a-4396-916d-49dd1895b76d.mp4
+
+
+
+https://user-images.githubusercontent.com/85318393/130913701-0a6aad8b-99ae-4e03-b6f4-b5da1d6c6de6.mp4
+
 
 **Non-interactive mode**
 
+
+https://user-images.githubusercontent.com/85318393/130913712-d6825f6f-4e57-4da4-a0ba-2f85240d6ce4.mp4
+
+
+
+https://user-images.githubusercontent.com/85318393/130913717-593c412f-82e3-4b8e-b454-06e0cbaf1b02.mp4
+
+
 **Incorrect commands**
+
+
+https://user-images.githubusercontent.com/85318393/130913735-ad6b0e44-f367-4d19-830f-276b50990d87.mp4
+
 
 ## Contributing
 This is a purely academic project for Holberton School. It cannot be modified and there will be no pull requests.
