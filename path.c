@@ -39,7 +39,7 @@ int search_path(char **array_tokens, char **tokenized_path)
 		free(aux);
 		errno = 0;
 		return (0);
-	}	
+	}
 	free(aux);
 	errno = 0;
 	return (1);
@@ -67,7 +67,12 @@ char *get_path(char **env)
 	}
 	return (NULL);
 }
-
+/**
+  * print_error - prints error message
+  * @first_av: First argument of the command line
+  * @first_token: first token
+  * @err_count: count of the errors
+  */
 void print_error(char *first_av, char *first_token, int err_count)
 {
 	write(STDOUT_FILENO, first_av, _strlen(first_av));
