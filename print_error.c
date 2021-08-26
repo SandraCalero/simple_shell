@@ -1,9 +1,11 @@
 #include "holberton.h"
 /**
   * print_error - prints error message
-  * @first_av: First argument of the command line
-  * @first_token: first token
-  * @err_count: count of the errors
+  * @first_av: Name of file av[0]
+  * @first_token: First token in the command line
+  * @err_count: Count of the errors
+  *
+  * Return: Nothing.
   */
 void print_error(char *first_av, char *first_token, int err_count)
 {
@@ -13,55 +15,43 @@ void print_error(char *first_av, char *first_token, int err_count)
 	write(STDOUT_FILENO, ": ", 2);
 	write(STDOUT_FILENO, first_token, _strlen(first_token));
 	write(STDOUT_FILENO, ": ", 2);
-	if (errno != 0)
-		perror("");
-	else
-		write(STDOUT_FILENO, "not found", 9);
+	write(STDOUT_FILENO, "not found", 9);
 	write(STDOUT_FILENO, "\n", 1);
 }
-#include "holberton.h"
 /**
  * print_number - prints an integer
- * @n: given integer
- * Return: void
+ * @n: Given integer
+ *
+ * Return: Nothing
  */
 void print_number(int n)
 {
-	int aux = n, i = 0, j = 0, a = 1;
+	unsigned int i, current_digit;
 
+	/* Edge case n is cero */
+	if (n == 0)
+	{
+		_putchar('0');
+
+	}
+	/* Case for negative integer: print '-' and turn int to positive */
 	if (n < 0)
 	{
-		_putchar(45);
+		_putchar('-');
+		n = n * (-1);
 	}
-
-	while (aux > 9 || aux < -9)
+	/* Finds the power of the integer*/
+	for (i = 1; n / i > 9; i = i * 10)
 	{
-		aux = aux / 10;
-		i++;
 	}
-
-	while (i > 0)
+	/* Prints each digit */
+	for (; i > 0; i = i / 10)
 	{
-		while (j < i)
-		{
-			a = a * 10;
-			j++;
-		}
-		if (n < 0)
-			_putchar('0' + -(n / a));
-		else
-			_putchar('0' + (n / a));
-		i--;
-		n = n % a;
-		j = 0;
-		a = 1;
+		current_digit = n / i;
+		n = n % i;
+		_putchar('0' + current_digit);
 	}
-	if (n < 0)
-		_putchar('0' + -n);
-	else
-		_putchar('0' + n);
 }
-#include <unistd.h>
 /**
  * _putchar - writes the character c to stdout
  * @c: The character to print
